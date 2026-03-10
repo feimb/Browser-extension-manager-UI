@@ -1,27 +1,56 @@
 import { useState } from "react";
 import ExtensionCard from "./ExtensionCard";
+import data from "@/data.json";
+
 const ExtensionList = () => {
     const sortButtons = ["All", "Active", "Inactive"];
     const [filter, setFilter] = useState("All");
+    const [filterArr, setFilterArr] = useState(data);
+
+    const handleFilter = (button) => {
+        setFilter(button);
+        console.log(button);
+        if (button  === "All") {
+            setFilterArr(data);
+        } else if (button  === "Active") {
+            setFilterArr(data.filter((card) => card.isActive === true));
+        } else if (button  === "Inactive") {
+            setFilterArr(data.filter((card) => card.isActive === false));
+        }
+    };
+
     return (
         <main>
-            <div className="text-neutral-0 flex items-center justify-center gap-2">
-                {sortButtons.map((button) => {
-                    return (
-                        <button
-                            onClick={() => {
-                                setFilter(button);
-                                console.log(filter);
-                            }}
-                            className={`py-1 px-4 mt-3 text-lg rounded-3xl  hover:brightness-125 ${button === filter ? "text-neutral-950 bg-red-500" : "bg-neutral-700"} cursor-pointer`}
-                        >
-                            {button}
-                        </button>
-                    );
-                })}
+            <div className="lg:flex items-baseline justify-between">
+                <h1 className="mt-10 text-3xl text-neutral-0 font-bold flex justify-center">
+                    Extension List
+                </h1>
+                <div className="text-neutral-0 flex items-center justify-center gap-2">
+                    {sortButtons.map((button) => {
+                        return (
+                            <button
+                                onClick={() => {
+                                    handleFilter(button);
+                                }}
+                                key={button}
+                                className={`py-1 px-4 mt-3 text-lg rounded-3xl  hover:brightness-125 ${button === filter ? "text-neutral-900 bg-red-500" : "bg-neutral-700"} cursor-pointer`}
+                            >
+                                {button}
+                            </button>
+                        );
+                    })}
+                </div>
             </div>
-            <section className="mt-8 grid grid-cols-1">
-                <ExtensionCard />
+            <section className="mt-8 grid grid-cols-1 gap-3 items-center  md:grid-cols-2 lg:grid-cols-3 ">
+                {filterArr.map(({ logo, name, description, isActive }) => (
+                    <ExtensionCard
+                        img={logo}
+                        title={name}
+                        content={description}
+                        isActive={isActive}
+                        key={name}
+                    />
+                ))}
             </section>
         </main>
     );
