@@ -1,4 +1,11 @@
-const ExtensionCard = ({ img, title, content, isActive, onClick }) => {
+const ExtensionCard = ({
+    img,
+    title,
+    content,
+    isActive,
+    onClick,
+    onDelete,
+}) => {
     return (
         <div className="p-4 col-span-1 bg-neutral-0 dark:bg-neutral-800 border rounded-xl border-neutral-200 dark:border-neutral-600 w-full h-[200px]">
             <div className="h-3/4 flex gap-4">
@@ -11,19 +18,22 @@ const ExtensionCard = ({ img, title, content, isActive, onClick }) => {
                 </div>
             </div>
             <div className=" flex items-center justify-between ">
-                <button className="px-3 p-1 font-medium border border-neutral-200 dark:border-neutral-600 text-neutral-900 dark:text-neutral-0 rounded-2xl cursor-pointer hover:bg-red-500 hover:text-neutral-900 outline-red-500 ">
+                <button
+                    className="px-3 p-1 font-medium border border-neutral-200 dark:border-neutral-600 text-neutral-900 dark:text-neutral-0 rounded-2xl cursor-pointer hover:bg-red-500 hover:text-neutral-900 outline-red-500 "
+                    onClick={onDelete}
+                >
                     Remove
                 </button>
 
-                <label class="inline-flex items-center cursor-pointer">
+                <label className="inline-flex items-center cursor-pointer">
                     <input
                         type="checkbox"
                         value=""
-                        class="sr-only peer"
+                        className="sr-only peer"
                         checked={isActive}
                         onClick={onClick}
                     />
-                    <div class="relative w-9 h-5 bg-neutral-400 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-400 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-buffer after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-red-700"></div>
+                    <div className="relative w-9 h-5 bg-neutral-400 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-400 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-buffer after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-red-700"></div>
                 </label>
             </div>
         </div>

@@ -6,25 +6,30 @@ const ExtensionList = () => {
     const sortButtons = ["All", "Active", "Inactive"];
     const [filter, setFilter] = useState("All");
     const [filterArr, setFilterArr] = useState(data);
-
     const handleFilter = (button) => {
         setFilter(button);
-        console.log(button);
-        if (button === "All") {
-            setFilterArr(filterArr);
-        } else if (button === "Active") {
-            setFilterArr(filterArr.filter((card) => card.isActive === true));
-        } else if (button === "Inactive") {
-            setFilterArr(filterArr.filter((card) => card.isActive === false));
-        }
     };
-    const toggleExtension = (index) => {
-        setFilterArr((prev) =>
-            prev.map((ext, i) =>
-                i === index ? { ...ext, isActive: !ext.isActive } : ext,
-            ),
-        );
+    const toggleExtension = (name) =>{
+        setFilterArr((prev) => {
+            return prev.map((ext) =>{
+                if(ext.name === name){
+                    return {
+                        ...ext,
+                        isActive: !ext.isActive,
+                    }
+                }
+                return ext
+            })
+        })
+    }
+    const deleteExtension = (name) => {
+        setFilterArr((prev) => prev.filter((ext) => ext.name !== name));
     };
+    const filteredExtensions = filterArr.filter((ext) => {
+        if (filter === "Active") return ext.isActive;
+        if (filter === "Inactive") return !ext.isActive;
+        return true;
+    });
     return (
         <main>
             <div className="lg:flex items-baseline justify-between">
@@ -48,15 +53,16 @@ const ExtensionList = () => {
                 </div>
             </div>
             <section className="mt-8 grid grid-cols-1 gap-3 items-center  md:grid-cols-2 lg:grid-cols-3 ">
-                {filterArr.map(
-                    ({ logo, name, description, isActive }, index) => (
+                {filteredExtensions.map(
+                    ({ logo, name, description, isActive }) => (
                         <ExtensionCard
                             img={logo}
                             title={name}
                             content={description}
                             isActive={isActive}
                             key={name}
-                            onClick={() => toggleExtension(index)}
+                            onClick={() => toggleExtension(name)}
+                            onDelete={() => deleteExtension(name)}
                         />
                     ),
                 )}
