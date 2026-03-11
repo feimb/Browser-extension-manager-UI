@@ -1,16 +1,72 @@
-# React + Vite
+# Frontend Mentor - Solución de la interfaz de administrador de extensiones del navegador
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esta es una solución al desafío [Browser extensions manager UI en Frontend Mentor](https://www.frontendmentor.io/challenges/browser-extension-manager-ui-yNZnOfsMAp). Los desafíos de Frontend Mentor te ayudan a mejorar tus habilidades de programación construyéndo proyectos realistas.
 
-Currently, two official plugins are available:
+## Tabla de contenidos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Resumen](#resumen)
+  - [El desafío](#el-desafío)
+  - [Captura de pantalla](#captura-de-pantalla)
+  - [Enlaces](#enlaces)
+- [Mi proceso](#mi-proceso)
+  - [Construido con](#construido-con)
+  - [Lo que aprendí](#lo-que-aprendí)
+- [Autor](#Autor)
 
-## React Compiler
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+---
 
-## Expanding the ESLint configuration
+# Resumen
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## El desafío
+
+Los usuarios deberían poder:
+
+- Activar o desactivar extensiones
+- Filtrar extensiones activas e inactivas
+- Eliminar extensiones de la lista
+- Seleccionar su tema de color
+- Ver el diseño óptimo de la interfaz según el tamaño de pantalla de su dispositivo
+- Ver estados de hover y focus en todos los elementos interactivos de la página
+
+---
+
+## Captura de pantalla
+
+![](./screenshot.png)
+ 
+---
+
+## Enlaces
+
+- URL de la solución: [https://github.com/feimb/Browser-extension-manager-UI](https://github.com/feimb/Browser-extension-manager-UI)
+- URL del sitio en vivo: [https://browser-extension-manager-ui-black.vercel.app/)](https://browser-extension-manager-ui-black.vercel.app/)
+
+---
+# Mi proceso
+
+## Construido con
+
+- React
+- Tailwind CSS
+- Lucide Icons
+- Vite
+---
+
+## Lo que aprendí
+# 🧠 Lo que aprendí
+
+Durante este proyecto aprendí a trabajar mejor con **estado en React** y a actualizar elementos dentro de un array de forma inmutable.
+
+Un ejemplo es el uso del **spread operator** para actualizar propiedades de un objeto:
+
+```javascript
+return {
+  ...ext,
+  isActive: !ext.isActive,
+}
+```
+También practiqué el uso de Tailwind CSS para construir interfaces de forma rápida y mantener un código de estilos limpio.
+# Autor
+- Linkedin: [Fei Mosqueda](https://www.linkedin.com/in/fei-mosqueda-934036260)
+- GitHub: [Feimb](https://github.com/feimb)
